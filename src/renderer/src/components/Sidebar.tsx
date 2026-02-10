@@ -1,8 +1,23 @@
 import AccountTab from "./AccountTab";
 
-export default function Sidebar() {
+interface Account {
+    name: string;
+    note: string;
+}
+
+interface SidebarProps {
+    accounts: Account[];
+    selectedAccount: Account | null;
+    onSelectAccount: (account: Account) => void;
+}
+
+export default function Sidebar({
+    accounts,
+    selectedAccount,
+    onSelectAccount,
+}: SidebarProps) {
     return (
-        <div className="w-64 h-full flex flex-col bg-secondary border-accent border-r">
+        <div className="w-68 h-full flex flex-col bg-secondary border-accent border-r">
             <div className="flex border-accent border-b h-14 justify-start items-center">
                 <svg
                     className="ml-4 mr-2 w-5 h-5 stroke-white"
@@ -37,9 +52,15 @@ export default function Sidebar() {
                     className="bg-transparent outline-none text-white placeholder-text-accent text-md w-full"
                 />
             </div>
-            <AccountTab />
-            <AccountTab />
-            <AccountTab />
+            {accounts.map((account) => (
+                <AccountTab
+                    key={account.name}
+                    name={account.name}
+                    note={account.note}
+                    selected={selectedAccount === account}
+                    onClick={() => onSelectAccount(account)}
+                />
+            ))}
         </div>
     );
 }

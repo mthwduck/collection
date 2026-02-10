@@ -1,7 +1,24 @@
-export default function AccountTab() {
+interface AccountTabProps {
+    name: string;
+    note: string;
+    selected: boolean;
+    onClick: () => void;
+}
+
+export default function AccountTab({
+    name,
+    note,
+    selected,
+    onClick,
+}: AccountTabProps) {
     return (
-        <div className="group flex items-center justify-start h-18 text-white hover:bg-accent">
-            <div className="rounded-full bg-accent w-10 h-10 ml-6 mr-3 group-hover:bg-secondary flex justify-center items-center">
+        <div
+            onClick={onClick}
+            className={`group flex items-center justify-start h-16 text-white cursor-pointer hover:bg-accent ${selected ? "bg-accent" : ""}`}
+        >
+            <div
+                className={`rounded-full w-10 h-10 ml-6 mr-3 flex justify-center items-center ${selected ? "bg-secondary" : "bg-accent group-hover:bg-secondary"}`}
+            >
                 <svg
                     className="w-5 h-5 stroke-white"
                     viewBox="0 0 24 24"
@@ -15,8 +32,8 @@ export default function AccountTab() {
                 </svg>
             </div>
             <div>
-                <p className="mb-1">Account Name</p>
-                <p className="text-text-accent text-sm">Note</p>
+                <p className={`${selected ? "text-riot-red" : ""}`}>{name}</p>
+                <p className="text-text-accent text-sm">{note}</p>
             </div>
         </div>
     );
