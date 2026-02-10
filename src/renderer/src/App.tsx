@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
+import potion_sprite from "./assets/potion_sprite.png";
 
 interface Account {
     name: string;
@@ -25,11 +26,17 @@ export default function App() {
                 onSelectAccount={setSelectedAccount}
             />
             <div className="flex-1">
-                <p>
-                    {selectedAccount
-                        ? selectedAccount.name
-                        : "Select an account"}
-                </p>
+                {selectedAccount ? (
+                    <p>{selectedAccount.name}</p>
+                ) : (
+                    <div className="flex items-center justify-center h-full">
+                        <img
+                            src={potion_sprite}
+                            alt="Riversprite"
+                            className="w-lg"
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );
