@@ -61,6 +61,11 @@ export default function Sidebar({
                     onClick={() => onSelectAccount(account)}
                 />
             ))}
+            <div className="mt-auto p-6">
+                <button className="w-full bg-riot-red text-white rounded-lg py-3 text-md cursor-pointer hover:brightness-90 transition">
+                    Add Account
+                </button>
+            </div>
         </div>
     );
 }
